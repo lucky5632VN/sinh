@@ -45,6 +45,8 @@ function App() {
         <Route path="/virtual-lab/spinal-cord" element={<SpinalCordLab />} />
         <Route path="/virtual-lab/human-brain" element={<HumanBrainLab />} />
         <Route path="/virtual-lab/taste" element={<SenseOfTasteLab />} />
+        <Route path="/virtual-lab/frog" element={<FrogReflexLab />} />
+        <Route path="/virtual-lab/plant-cycle" element={<PlantCycleLab />} />
       </Routes>
     </BrowserRouter>
   );
