@@ -20,6 +20,8 @@ import ImmuneSystemLab from './pages/labs/ImmuneSystemLab';
 import SpinalCordLab from './pages/labs/SpinalCordLab';
 import HumanBrainLab from './pages/labs/HumanBrainLab';
 import SenseOfTasteLab from './pages/labs/SenseOfTasteLab';
+import UrinarySystemLab from './pages/labs/UrinarySystemLab';
+import DigestiveTractLab from './pages/labs/DigestiveTractLab';
 
 // Force HMR Rebuild
 function App() {
@@ -47,6 +49,8 @@ function App() {
         <Route path="/virtual-lab/taste" element={<SenseOfTasteLab />} />
         <Route path="/virtual-lab/frog" element={<FrogReflexLab />} />
         <Route path="/virtual-lab/plant-cycle" element={<PlantCycleLab />} />
+        <Route path="/virtual-lab/urinary-system" element={<UrinarySystemLab />} />
+        <Route path="/virtual-lab/digestive-tract" element={<DigestiveTractLab />} />
       </Routes>
     </BrowserRouter>
   );

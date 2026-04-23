@@ -22,10 +22,6 @@ const Sidebar = () => {
           <Library size={20} />
           <span>Thư viện Thí nghiệm</span>
         </NavLink>
-        <NavLink to="/theory" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
-          <BookOpen size={20} />
-          <span>Cơ sở lý thuyết</span>
-        </NavLink>
       </nav>
     </aside>
   );

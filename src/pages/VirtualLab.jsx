@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Beaker, Dna, Activity, Zap, Eye, Utensils, User, Fingerprint, Layers, Brain } from 'lucide-react';
+import { Beaker, Dna, Activity, Zap, Eye, Utensils, User, Fingerprint, Layers, Brain, Droplets } from 'lucide-react';
 
 const labs = [
   {
@@ -164,6 +164,28 @@ const labs = [
     bg: 'rgba(236, 72, 153, 0.2)',
     description: 'Khám phá cấu trúc lưỡi, các nhú vị giác và cơ chế truyền xung thần kinh vị giác lên não bộ.',
     path: '/virtual-lab/taste'
+  },
+  {
+    id: 'urinary-system',
+    name: 'Hệ Tiết Niệu',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <Droplets color="#0ea5e9" size={24} />,
+    bg: 'rgba(14, 165, 233, 0.2)',
+    description: 'Khám phá cấu trúc thận, niệu quản, bàng quang và cơ chế lọc máu ở đơn vị thận (nephron).',
+    path: '/virtual-lab/urinary-system'
+  },
+  {
+    id: 'digestive-tract',
+    name: 'Bộ Máy Tiêu Hóa',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <Utensils color="#f59e0b" size={24} />,
+    bg: 'rgba(245, 158, 11, 0.2)',
+    description: 'Khám phá quá trình tiêu hóa thức ăn, cấu tạo các cơ quan trong ống tiêu hóa và tuyến tiêu hóa.',
+    path: '/virtual-lab/digestive-tract'
   }
 ];
 
@@ -209,10 +231,9 @@ const VirtualLab = () => {
                 }}>
                   {lab.icon}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                   <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#fff' }}>{lab.name}</h3>
-                   <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.3)', padding: '2px 8px', borderRadius: '6px' }}>{lab.grade}</span>
-                </div>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#fff' }}>{lab.name}</h3>
+                 </div>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>{lab.description}</p>
               </div>
             ))}

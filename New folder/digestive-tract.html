@@ -3,7 +3,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Vị giác</title>
+<title>Bộ máy tiêu hóa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/static/home/icons/favicon.ico">
 <link rel="stylesheet" href="/static/home/css/vl.css">
@@ -17,8 +17,6 @@
     function init() {
         canvas = document.getElementById("canvas");
         createjs.LoadItem.LOAD_TIMEOUT_DEFAULT = 120 * 1000;
-
-        createjs.MotionGuidePlugin.install();
 
 
 
@@ -58,7 +56,7 @@
         }
 
 
-        exportRoot = new lib._478();
+        exportRoot = new lib._122();
         stage = new createjs.Stage(canvas);
         var bg = new createjs.Shape();
         bg.graphics.beginFill('white').drawRect(0, 0, lib.properties.width, lib.properties.height);
@@ -162,7 +160,7 @@
 <body onload="init();" onresize="resize()">
 <div class="main-content" style="background-color:#FFFFFF;font-family:Arial;Helvetica,sans-serif">
 <h2>Hướng dẫn</h2>
-<div itemprop="description"><p>Vị giác là cảm giác cho phép chúng ta xác định mùi vị trong thực phẩm. Cơ quan chính liên quan đến nhận thức về vị giác là lưỡi. Nó được bao phủ bởi các nhú vị giác chứa các thụ thể cảm nhận cho vị giác: chồi vị giác.</p><p>Hoạt ảnh này cho thấy ba kiểu nhú vị giác trải khắp lưỡi ở các vị trí cụ thể. Nó cũng cho phép minh họa việc truyền các xung thần kinh mang thông tin về vị giác, từ chồi vị giác đến não, dọc theo các sợi thần kinh.</p><p>Các vùng cụ thể để phát hiện bốn vị cơ bản (đắng, chua, mặn và ngọt) không được hiển thị trên lưỡi như thường thấy, bởi vì các nghiên cứu gần đây đã chỉ ra rằng mọi thứ phức tạp hơn thế nhiều.</p></div>
+<div itemprop="description"><p>Thức ăn được tiêu hóa di chuyển qua đường tiêu hóa. Nó bị phá vỡ cả cơ học (nhai, khuấy) lẫn hóa học (dịch tiêu hóa). Một phần của nó được chuyển hóa thành các chất dinh dưỡng hòa tan được hấp thụ vào máu trong ruột non và sau đó được mang đến các cơ quan. Trong ruột, thức ăn không tiêu hóa được loại bỏ dưới dạng phân.</p><p><strong>Nhấn</strong> ► để bắt đầu.</p><p><strong>Nhấn</strong> vào nhân vật để hiện tên các cơ quan.</p></div>
 <h2>Giới thiệu</h2>
 Nguồn: eduMedia
 <img src="/static/home/images/edumedia-logo.svg" height="30px;" alt=""/>
@@ -171,10 +169,11 @@ Nguồn: eduMedia
 </div>
 <canvas id="canvas" width="550" height="440" style="background-color:#FFFFFF; display: none"></canvas>
 <script src="/static/biologylab/js/vendor/gettext.min.js"></script>
-<script src="/static/biologylab/js/the-sense-of-taste/gettext-vi.js"></script>
+<script src="/static/biologylab/js/digestive-tract/gettext-vi.js"></script>
+<script src="/static/biologylab/js/vendor/three.min.js"></script>
 <script src="/static/biologylab/js/vendor/createjs-2015.11.26.min.js"></script>
 <script src="/static/biologylab/js/compo.min.js"></script>
-<script src="/static/biologylab/js/the-sense-of-taste/the-sense-of-taste.js"></script>
+<script src="/static/biologylab/js/digestive-tract/digestive-tract.js"></script>
 <a href="#" target="_top" id="js-dto" class="demo-overlay js-demo-overlay" style="display: none;">
 <span class="demo-overlay__body">Đăng ký »</span>
 </a>
