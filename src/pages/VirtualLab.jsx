@@ -4,36 +4,6 @@ import { Beaker, Dna, Activity, Zap, Eye, Utensils, User, Fingerprint, Layers, B
 
 const labs = [
   {
-    id: 'membrane',
-    name: 'Động Lực Kênh Màng',
-    category: 'Tế bào & Phân tử',
-    grade: 'Lớp 10',
-    icon: <Activity color="var(--accent-cyan)" size={24} />,
-    bg: 'rgba(0, 240, 255, 0.2)',
-    description: 'Mô phỏng lớp kép Thẩm thấu Kênh protein với tương tác Nồng độ Ion trực quan.',
-    path: '/virtual-lab/membrane'
-  },
-  {
-    id: 'enzyme',
-    name: 'Hoạt tính Enzyme',
-    category: 'Tế bào & Phân tử',
-    grade: 'Lớp 11',
-    icon: <Zap color="var(--accent-green)" size={24} />,
-    bg: 'rgba(0, 255, 163, 0.2)',
-    description: 'Kiểm chứng sự biến dạng màng xúc tác Enzyme và tốc độ dao động Ion vi mô nội bào.',
-    path: '/virtual-lab/enzyme'
-  },
-  {
-    id: 'dna',
-    name: 'Kéo Dãn Vi Mô DNA',
-    category: 'Tế bào & Phân tử',
-    grade: 'Lớp 12',
-    icon: <Dna color="var(--accent-purple)" size={24} />,
-    bg: 'rgba(139, 92, 246, 0.2)',
-    description: 'Thực hành Kẹp quang học để biến dạng cấu trúc Lò xo phân tử của chuỗi xoắn kép.',
-    path: '/virtual-lab/dna'
-  },
-  {
     id: 'ct-scan',
     name: 'Chụp Cắt Lớp Vi Tính',
     category: 'Y sinh',
@@ -74,56 +44,6 @@ const labs = [
     path: '/virtual-lab/anatomy'
   },
   {
-    id: 'eating',
-    name: 'Chế Độ Ăn & Tập Luyện',
-    category: 'Cơ thể & Giải phẫu',
-    grade: 'Lớp 11',
-    icon: <Utensils color="#ffa500" size={24} />,
-    bg: 'rgba(255, 165, 0, 0.1)',
-    description: 'Khám phá cơ chế lưu trữ vi chất học và tiêu hao Calories (Proprietary Engine).',
-    path: '/virtual-lab/eating'
-  },
-  {
-    id: 'vision',
-    name: 'Thị Giác Màu Sắc',
-    category: 'Cơ thể & Giải phẫu',
-    grade: 'Lớp 11',
-    icon: <Eye color="#ff69b4" size={24} />,
-    bg: 'rgba(255, 105, 180, 0.1)',
-    description: 'Giải phẫu hệ thần kinh tiếp nhận và xử lý quang phổ (Neural Perception Model).',
-    path: '/virtual-lab/vision'
-  },
-  {
-    id: 'frog',
-    name: 'Cung Phản Xạ Ếch',
-    category: 'Cơ thể & Giải phẫu',
-    grade: 'Lớp 11',
-    icon: <Activity color="#4ade80" size={24} />,
-    bg: 'rgba(74, 222, 128, 0.2)',
-    description: 'Thí nghiệm chứng minh phản xạ không điều kiện và vai trò của Tủy sống.',
-    path: '/virtual-lab/frog'
-  },
-  {
-    id: 'mendel',
-    name: 'Di Truyền Mendel',
-    category: 'Di truyền & Tiến hóa',
-    grade: 'Lớp 12',
-    icon: <Fingerprint color="#a3e635" size={24} />,
-    bg: 'rgba(163, 230, 53, 0.2)',
-    description: 'Thực nghiệm quy luật phân ly và phân ly độc lập trên các dòng đậu Hà Lan thuần chủng.',
-    path: '/virtual-lab/mendel'
-  },
-  {
-    id: 'immune-system',
-    name: 'Hệ Miễn Dịch',
-    category: 'Cơ thể & Giải phẫu',
-    grade: 'Lớp 11',
-    icon: <Activity color="#ef4444" size={24} />,
-    bg: 'rgba(239, 68, 68, 0.2)',
-    description: 'Khám phá các cấp độ bảo vệ cơ thể: từ cơ quan miễn dịch đến hệ bạch huyết và tim mạch.',
-    path: '/virtual-lab/immune-system'
-  },
-  {
     id: 'spinal-cord',
     name: 'Tủy Sống',
     category: 'Cơ thể & Giải phẫu',
@@ -132,16 +52,6 @@ const labs = [
     bg: 'rgba(6, 182, 212, 0.2)',
     description: 'Nghiên cứu cấu trúc vĩ mô và vi mô của tủy sống, trung khu của các phản xạ không điều kiện.',
     path: '/virtual-lab/spinal-cord'
-  },
-  {
-    id: 'plant-cycle',
-    name: 'Chu Kỳ Đời Sống Thực Vật',
-    category: 'Di truyền & Tiến hóa',
-    grade: 'Lớp 10',
-    icon: <Zap color="#fbbf24" size={24} />,
-    bg: 'rgba(251, 191, 36, 0.2)',
-    description: 'Quan sát chu kỳ sinh trưởng từ Hạt → Cây trưởng thành → Hoa → Quả.',
-    path: '/virtual-lab/plant-cycle'
   },
   {
     id: 'human-brain',
@@ -186,16 +96,80 @@ const labs = [
     bg: 'rgba(245, 158, 11, 0.2)',
     description: 'Khám phá quá trình tiêu hóa thức ăn, cấu tạo các cơ quan trong ống tiêu hóa và tuyến tiêu hóa.',
     path: '/virtual-lab/digestive-tract'
-  }
+  },
+  {
+    id: 'muscle-contraction',
+    name: 'Co cơ - Đốt cơ',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <Zap color="#f59e0b" size={24} />,
+    bg: 'rgba(245, 158, 11, 0.2)',
+    description: 'Quan sát cơ chế trượt của các sợi myosin và actin trong đơn vị co cơ (sarcomere).',
+    path: '/virtual-lab/muscle-contraction'
+  },
+  {
+    id: 'respiratory-system',
+    name: 'Hệ Hô Hấp',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <Activity color="#06b6d4" size={24} />,
+    bg: 'rgba(6, 182, 212, 0.2)',
+    description: 'Khám phá cơ chế trao đổi khí qua phế nang, chu kỳ hít thở và tuần hoàn oxy trong cơ thể.',
+    path: '/virtual-lab/respiratory-system'
+  },
+  {
+    id: 'male-reproductive',
+    name: 'Hệ Sinh Sản Nam',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <User color="#0ea5e9" size={24} />,
+    bg: 'rgba(14, 165, 233, 0.2)',
+    description: 'Khám phá cấu trúc giải phẫu cơ quan sinh sản nam và cơ chế sản sinh tinh trùng.',
+    path: '/virtual-lab/male-reproductive'
+  },
+  {
+    id: 'female-reproductive',
+    name: 'Hệ Sinh Sản Nữ',
+    category: 'Cơ thể & Giải phẫu',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <User color="#ec4899" size={24} />,
+    bg: 'rgba(236, 72, 153, 0.2)',
+    description: 'Khám phá cấu trúc giải phẫu cơ quan sinh sản nữ, chu kỳ kinh nguyệt và sự thụ tinh.',
+    path: '/virtual-lab/female-reproductive'
+  },
 ];
 
 const VirtualLab = () => {
   const navigate = useNavigate();
   const categories = [...new Set(labs.map(l => l.category))];
+  const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const savedScroll = sessionStorage.getItem('virtual-lab-scroll');
+    if (savedScroll && containerRef.current) {
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = parseInt(savedScroll, 10);
+        }
+      }, 100);
+    }
+  }, []);
+
+  const handleScroll = (e) => {
+    sessionStorage.setItem('virtual-lab-scroll', e.target.scrollTop);
+  };
 
   return (
-    <div style={{ padding: '32px', height: '100%', overflowY: 'auto' }}>
-      <h1 className="text-glow" style={{ marginBottom: '8px' }}>Trung Tâm Thực Hành Ảo BioSTEM</h1>
+    <div 
+      ref={containerRef}
+      onScroll={handleScroll}
+      style={{ padding: '32px', height: '100%', overflowY: 'auto' }}
+    >
+      <h1 className="text-glow" style={{ marginBottom: '8px' }}>Trung Tâm Thực Hành Ảo BioSTEM (Đã Cập Nhật)</h1>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>
         Hệ sinh thái mô phỏng Sinh học độc quyền chuẩn GDPT 2018 (Native WebGL & React Engine).
       </p>
