@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Beaker, Dna, Activity, Zap, Eye, Utensils, User, Fingerprint, Layers, Brain, Droplets } from 'lucide-react';
+import { Beaker, Dna, Activity, Zap, Eye, Utensils, User, Fingerprint, Layers, Brain, Droplets, Share2 } from 'lucide-react';
 
 const labs = [
+  // --- Sinh lý & Giải phẫu Người ---
   {
     id: 'ct-scan',
     name: 'Chụp Cắt Lớp Vi Tính',
-    category: 'Y sinh',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 12',
     icon: <Activity color="#06b6d4" size={24} />,
     bg: 'rgba(6, 182, 212, 0.2)',
@@ -16,7 +17,7 @@ const labs = [
   {
     id: 'brain-sections',
     name: 'Giải Phẫu Cắt Lớp Não',
-    category: 'Y sinh',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     icon: <Layers color="#a855f7" size={24} />,
     bg: 'rgba(168, 85, 247, 0.2)',
@@ -26,7 +27,7 @@ const labs = [
   {
     id: 'bone-scintigraphy',
     name: 'Xạ Hình Xương',
-    category: 'Y sinh',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 12',
     icon: <Activity color="#06b6d4" size={24} />,
     bg: 'rgba(6, 182, 212, 0.2)',
@@ -36,7 +37,7 @@ const labs = [
   {
     id: 'anatomy',
     name: 'Giải Phẫu Cơ Thể Người',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     icon: <User color="#f43f5e" size={24} />,
     bg: 'rgba(244, 63, 94, 0.2)',
@@ -46,7 +47,7 @@ const labs = [
   {
     id: 'spinal-cord',
     name: 'Tủy Sống',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     icon: <Activity color="#06b6d4" size={24} />,
     bg: 'rgba(6, 182, 212, 0.2)',
@@ -56,7 +57,7 @@ const labs = [
   {
     id: 'human-brain',
     name: 'Bộ Não Người',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Brain color="#d946ef" size={24} />,
@@ -67,7 +68,7 @@ const labs = [
   {
     id: 'taste',
     name: 'Vị Giác',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Activity color="#ec4899" size={24} />,
@@ -78,7 +79,7 @@ const labs = [
   {
     id: 'urinary-system',
     name: 'Hệ Tiết Niệu',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Droplets color="#0ea5e9" size={24} />,
@@ -89,7 +90,7 @@ const labs = [
   {
     id: 'digestive-tract',
     name: 'Bộ Máy Tiêu Hóa',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Utensils color="#f59e0b" size={24} />,
@@ -100,7 +101,7 @@ const labs = [
   {
     id: 'muscle-contraction',
     name: 'Co cơ - Đốt cơ',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Zap color="#f59e0b" size={24} />,
@@ -111,7 +112,7 @@ const labs = [
   {
     id: 'respiratory-system',
     name: 'Hệ Hô Hấp',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Activity color="#06b6d4" size={24} />,
@@ -122,7 +123,7 @@ const labs = [
   {
     id: 'male-reproductive',
     name: 'Hệ Sinh Sản Nam',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <User color="#0ea5e9" size={24} />,
@@ -133,7 +134,7 @@ const labs = [
   {
     id: 'female-reproductive',
     name: 'Hệ Sinh Sản Nữ',
-    category: 'Cơ thể & Giải phẫu',
+    category: 'Sinh lý & Giải phẫu Người',
     grade: 'Lớp 11',
     isNew: true,
     icon: <User color="#ec4899" size={24} />,
@@ -141,6 +142,100 @@ const labs = [
     description: 'Khám phá cấu trúc giải phẫu cơ quan sinh sản nữ, chu kỳ kinh nguyệt và sự thụ tinh.',
     path: '/virtual-lab/female-reproductive'
   },
+  {
+    id: 'fertilization',
+    name: 'Thụ Tinh',
+    category: 'Sinh lý & Giải phẫu Người',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <User color="#ec4899" size={24} />,
+    bg: 'rgba(236, 72, 153, 0.2)',
+    description: 'Theo dõi tương tác giữa giao tử đực và cái, sự thụ tinh, phân chia và làm tổ của hợp tử trong tử cung.',
+    path: '/virtual-lab/fertilization'
+  },
+
+  // --- Di truyền & Biến dị ---
+  {
+    id: 'karyotype-activities',
+    name: 'Hoạt Động Bộ Nhiễm Sắc Thể',
+    category: 'Di truyền & Biến dị',
+    grade: 'Lớp 12',
+    isNew: true,
+    icon: <Dna color="#a855f7" size={24} />,
+    bg: 'rgba(168, 85, 247, 0.2)',
+    description: 'Thực hành lập và phân tích nhiễm sắc thể đồ, phát hiện các bất thường di truyền như hội chứng Down, Turner.',
+    path: '/virtual-lab/karyotype-activities'
+  },
+  {
+    id: 'mendel-experiment',
+    name: 'Thí nghiệm của Mendel',
+    category: 'Di truyền & Biến dị',
+    grade: 'Lớp 12',
+    isNew: true,
+    icon: <Dna color="#22c55e" size={24} />,
+    bg: 'rgba(34, 197, 94, 0.2)',
+    description: 'Mô phỏng thí nghiệm lai một tính trạng của Gregor Mendel trên cây đậu Hà Lan.',
+    path: '/virtual-lab/mendel-experiment'
+  },
+  {
+    id: 'mendel-di-hybrid',
+    name: 'Thí nghiệm Mendel (Lai hai tính trạng)',
+    category: 'Di truyền & Biến dị',
+    grade: 'Lớp 12',
+    isNew: true,
+    icon: <Dna color="#3b82f6" size={24} />,
+    bg: 'rgba(59, 130, 246, 0.2)',
+    description: 'Mô phỏng thí nghiệm lai hai cặp tính trạng tương phản để tìm hiểu quy luật phân ly độc lập.',
+    path: '/virtual-lab/mendel-di-hybrid'
+  },
+
+  // --- Sinh thái & Tiến hóa ---
+  {
+    id: 'food-network',
+    name: 'Lưới Thức Ăn',
+    category: 'Sinh thái & Tiến hóa',
+    grade: 'Lớp 12',
+    isNew: true,
+    icon: <Share2 color="#22c55e" size={24} />,
+    bg: 'rgba(34, 197, 94, 0.2)',
+    description: 'Khám phá mạng lưới thức ăn đa dạng sinh học và quan sát ảnh hưởng khi một loài biến mất khỏi hệ sinh thái.',
+    path: '/virtual-lab/food-network'
+  },
+  {
+    id: 'mountain-food-chain',
+    name: 'Chuỗi Thức Ăn Núi',
+    category: 'Sinh thái & Tiến hóa',
+    grade: 'Lớp 12',
+    isNew: true,
+    icon: <Share2 color="#10b981" size={24} />,
+    bg: 'rgba(16, 185, 129, 0.2)',
+    description: 'Mô phỏng chuỗi thức ăn trong hệ sinh thái núi, nhận biết vai trò của sinh vật sản xuất và tiêu thụ.',
+    path: '/virtual-lab/mountain-food-chain'
+  },
+  {
+    id: 'the-tree',
+    name: 'Cây Phát Sinh Chủng Loại',
+    category: 'Sinh thái & Tiến hóa',
+    grade: 'Lớp 10',
+    isNew: true,
+    icon: <Layers color="#22c55e" size={24} />,
+    bg: 'rgba(34, 197, 94, 0.2)',
+    description: 'Khám phá sơ đồ tiến hóa sinh giới, mối liên hệ họ hàng giữa các loài sinh vật qua các thời kỳ lịch sử.',
+    path: '/virtual-lab/the-tree'
+  },
+
+  // --- Sinh học Tế bào & Thực vật ---
+  {
+    id: 'root-absorption',
+    name: 'Hấp Thụ Ở Rễ',
+    category: 'Sinh học Tế bào & Thực vật',
+    grade: 'Lớp 11',
+    isNew: true,
+    icon: <Activity color="#38bdf8" size={24} />,
+    bg: 'rgba(56, 189, 248, 0.2)',
+    description: 'Khám phá cơ chế rễ cây hút nước và khoáng chất từ đất, cấu tạo lông hút và con đường đi qua các lớp tế bào.',
+    path: '/virtual-lab/root-absorption'
+  }
 ];
 
 const VirtualLab = () => {
@@ -180,9 +275,10 @@ const VirtualLab = () => {
             fontSize: '1.2rem', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', 
             color: 'var(--accent-cyan)', borderLeft: '4px solid var(--accent-cyan)', paddingLeft: '12px' 
           }}>
-            {cat === 'Tế bào & Phân tử' && <Layers size={20} />}
-            {cat === 'Cơ thể & Giải phẫu' && <User size={20} />}
-            {cat === 'Di truyền & Tiến hóa' && <Dna size={20} />}
+            {cat === 'Sinh học Tế bào & Thực vật' && <Layers size={20} />}
+            {cat === 'Sinh lý & Giải phẫu Người' && <User size={20} />}
+            {cat === 'Di truyền & Biến dị' && <Dna size={20} />}
+            {cat === 'Sinh thái & Tiến hóa' && <Share2 size={20} />}
             {cat}
           </h2>
           

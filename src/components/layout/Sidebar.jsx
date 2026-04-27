@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Library, BookOpen, Microscope } from 'lucide-react';
+import { Home, Library, BookOpen, Microscope, Target } from 'lucide-react';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -18,9 +18,17 @@ const Sidebar = () => {
           <Home size={20} />
           <span>Trang Chủ</span>
         </NavLink>
+        <NavLink to="/theory" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
+          <BookOpen size={20} />
+          <span>Lý thuyết</span>
+        </NavLink>
+        <NavLink to="/exercises" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
+          <Target size={20} />
+          <span>Bài tập</span>
+        </NavLink>
         <NavLink to="/virtual-lab" className={({isActive}) => isActive ? "nav-item active" : "nav-item"}>
           <Library size={20} />
-          <span>Thư viện Thí nghiệm</span>
+          <span>Thí nghiệm</span>
         </NavLink>
       </nav>
     </aside>
