@@ -209,7 +209,7 @@ const Exercises = () => {
               <button 
                 style={{ 
                   width: '100%', padding: '18px', borderRadius: '16px', fontSize: '1.1rem', fontWeight: 700,
-                  background: selectedOption !== null ? 'linear-gradient(90deg, var(--accent-cyan), var(--accent-blue))' : 'rgba(255,255,255,0.05)',
+                  background: selectedOption !== null ? 'linear-gradient(90deg, var(--accent-cyan), #3b82f6)' : 'rgba(255,255,255,0.05)',
                   color: selectedOption !== null ? '#000' : '#64748b', border: 'none',
                   cursor: selectedOption === null ? 'not-allowed' : 'pointer',
                   transition: 'all 0.3s'

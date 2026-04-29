@@ -104,7 +104,7 @@ const Theory = () => {
               style={{ padding: '12px 24px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}
               onClick={() => navigate(`/virtual-lab/${selectedLab.id}`)}
             >
-              <Beaker size={20} /> Vào Phòng Lab 3D <ArrowRight size={18} />
+              <Beaker size={20} /> Vào Phòng Lab <ArrowRight size={18} />
             </button>
           </div>
 
