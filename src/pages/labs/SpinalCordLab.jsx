@@ -44,7 +44,7 @@ const SpinalCordLab = () => {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
           <button 
-            onClick={() => navigate('/virtual-lab')}
+            onClick={() => navigate(-1)}
             className="hover-bg-slate"
             style={{ 
               padding: '6px', background: 'transparent', border: 'none', borderRadius: '9999px', 

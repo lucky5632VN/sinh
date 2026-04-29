@@ -228,7 +228,7 @@ const labs = [
   {
     id: 'root-absorption',
     name: 'Hấp Thụ Ở Rễ',
-    category: 'Sinh học Tế bào & Thực vật',
+    category: 'Sinh lý Thực vật',
     grade: 'Lớp 11',
     isNew: true,
     icon: <Activity color="#38bdf8" size={24} />,
@@ -275,7 +275,7 @@ const VirtualLab = () => {
             fontSize: '1.2rem', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', 
             color: 'var(--accent-cyan)', borderLeft: '4px solid var(--accent-cyan)', paddingLeft: '12px' 
           }}>
-            {cat === 'Sinh học Tế bào & Thực vật' && <Layers size={20} />}
+            {cat === 'Sinh lý Thực vật' && <Layers size={20} />}
             {cat === 'Sinh lý & Giải phẫu Người' && <User size={20} />}
             {cat === 'Di truyền & Biến dị' && <Dna size={20} />}
             {cat === 'Sinh thái & Tiến hóa' && <Share2 size={20} />}

@@ -34,7 +34,7 @@ const AnatomyLab = () => {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
           <button 
-            onClick={() => navigate('/virtual-lab')}
+            onClick={() => navigate(-1)}
             style={{ 
               padding: '6px', background: 'rgba(255,255,255,0.05)', border: 'none', borderRadius: '8px', 
               color: '#94a3b8', cursor: 'pointer', display: 'flex', alignItems: 'center' 

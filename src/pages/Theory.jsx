@@ -1,165 +1,274 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
-  AlertTriangle, 
-  CheckCircle, 
-  RefreshCcw, 
   BookOpen, 
-  ChevronRight, 
+  Beaker, 
+  Search, 
   ArrowLeft, 
   Target, 
-  Beaker,
-  Search,
-  Bookmark,
-  Info,
-  ChevronDown,
-  ChevronUp
+  FileText, 
+  Layers, 
+  Activity, 
+  Dna, 
+  Share2, 
+  ArrowRight 
 } from 'lucide-react';
-import { curriculumData } from '../data/curriculumData';
-import { useNavigate } from 'react-router-dom';
+import { experimentTheoryData } from '../data/experimentTheoryData';
 
 const Theory = () => {
   const navigate = useNavigate();
-  const [activeTopic, setActiveTopic] = useState(curriculumData[0].topics[0]); // Default to first topic
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [expandedGrades, setExpandedGrades] = useState({ 'Sinh Học 10': true, 'Sinh Học 11': true, 'Sinh Học 12': true });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLab, setSelectedLab] = useState(null);
 
-  const toggleGrade = (grade) => {
-    setExpandedGrades(prev => ({ ...prev, [grade]: !prev[grade] }));
+  React.useEffect(() => {
+    const savedLabId = sessionStorage.getItem('theory-active-lab-id');
+    if (savedLabId) {
+      const lab = experimentTheoryData.find(l => l.id === savedLabId);
+      if (lab) setSelectedLab(lab);
+    }
+  }, []);
+
+  const handleSelectLab = (lab) => {
+    setSelectedLab(lab);
+    if (lab) {
+      sessionStorage.setItem('theory-active-lab-id', lab.id);
+    } else {
+      sessionStorage.removeItem('theory-active-lab-id');
+    }
   };
 
-  const handleSelect = (idx) => {
-    if (!hasSubmitted) setSelectedOption(idx);
+  const categories = [...new Set(experimentTheoryData.map(l => l.category))];
+
+  const filteredLabs = experimentTheoryData.filter(lab =>
+    lab.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    lab.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleBack = () => {
+    handleSelectLab(null);
   };
 
-  const currentOption = selectedOption !== null ? activeTopic.question.options[selectedOption] : null;
+  const getIcon = (category) => {
+    switch (category) {
+      case 'Sinh lý Thực vật': return <Layers size={20} color="var(--accent-cyan)" />;
+      case 'Sinh lý & Giải phẫu Người': return <Activity size={20} color="#ef4444" />;
+      case 'Di truyền & Biến dị': return <Dna size={20} color="#a855f7" />;
+      case 'Sinh thái & Tiến hóa': return <Share2 size={20} color="#22c55e" />;
+      default: return <FileText size={20} />;
+    }
+  };
 
-  return (
-    <div style={{ display: 'flex', height: '100%', overflow: 'hidden', background: '#020617' }}>
-      
-      {/* 1. Navigation Sidebar */}
-      <aside style={{ 
-        width: '320px', height: '100%', borderRight: '1px solid rgba(255,255,255,0.05)',
-        display: 'flex', flexDirection: 'column', background: 'rgba(15, 23, 42, 0.5)',
-        backdropFilter: 'blur(10px)'
+  if (selectedLab) {
+    return (
+      <div style={{ 
+        padding: '40px 60px', 
+        height: '100%', 
+        overflowY: 'auto', 
+        background: 'linear-gradient(135deg, #020617 0%, #0f172a 100%)',
+        color: '#f8fafc',
+        fontFamily: "'Inter', sans-serif"
       }}>
-        <div style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-          <h2 style={{ fontSize: '1rem', color: '#fff', margin: '0 0 16px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <BookOpen size={18} color="var(--accent-cyan)" /> THƯ VIỆN LÝ THUYẾT
-          </h2>
-          <div style={{ 
-            position: 'relative', display: 'flex', alignItems: 'center', 
-            background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '8px 12px' 
-          }}>
-            <Search size={14} color="#64748b" />
-            <input 
-              placeholder="Tìm kiếm chuyên đề..." 
-              style={{ background: 'none', border: 'none', color: '#fff', fontSize: '0.85rem', marginLeft: '8px', outline: 'none', width: '100%' }}
-            />
-          </div>
-        </div>
+        {/* Nút quay lại */}
+        <button 
+          onClick={handleBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '8px',
+            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+            color: '#cbd5e1', padding: '10px 16px', borderRadius: '12px',
+            cursor: 'pointer', transition: 'all 0.2s', fontSize: '0.9rem', fontWeight: 600,
+            marginBottom: '32px'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+          onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+        >
+          <ArrowLeft size={18} /> Quay lại danh sách
+        </button>
 
-        <div style={{ flex: 1, overflowY: 'auto', padding: '12px' }}>
-          {curriculumData.map((gradeBlock, gIdx) => (
-            <div key={gIdx} style={{ marginBottom: '8px' }}>
-              <button 
-                onClick={() => toggleGrade(gradeBlock.grade)}
-                style={{ 
-                  width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  padding: '10px 12px', background: 'none', border: 'none', color: '#94a3b8',
-                  fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', textAlign: 'left'
-                }}
-              >
-                {gradeBlock.grade.toUpperCase()}
-                {expandedGrades[gradeBlock.grade] ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-              </button>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          {/* Header chi tiết */}
+          <div style={{ 
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+            borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '24px', marginBottom: '40px' 
+          }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-cyan)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
+                {getIcon(selectedLab.category)} {selectedLab.category} • {selectedLab.grade}
+              </div>
+              <h1 style={{ fontSize: '2.5rem', fontWeight: 900, margin: 0, color: '#fff', letterSpacing: '-0.5px' }}>
+                {selectedLab.name}
+              </h1>
+            </div>
+
+            <button 
+              className="btn-primary" 
+              style={{ padding: '12px 24px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}
+              onClick={() => navigate(`/virtual-lab/${selectedLab.id}`)}
+            >
+              <Beaker size={20} /> Vào Phòng Lab 3D <ArrowRight size={18} />
+            </button>
+          </div>
+
+          {/* Nội dung Bento Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '32px', alignItems: 'start' }}>
+            
+            {/* Cột trái: Lý thuyết & Nguyên lý */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
               
-              {expandedGrades[gradeBlock.grade] && (
-                <div style={{ marginTop: '4px' }}>
-                  {gradeBlock.topics.map((topic, tIdx) => (
-                    <button 
-                      key={tIdx}
-                      onClick={() => {
-                        setActiveTopic(topic);
-                        setHasSubmitted(false);
-                        setSelectedOption(null);
-                      }}
-                      style={{ 
-                        width: '100%', padding: '10px 16px', textAlign: 'left', borderRadius: '8px',
-                        background: activeTopic?.id === topic.id ? 'rgba(0, 240, 255, 0.08)' : 'transparent',
-                        border: 'none', color: activeTopic?.id === topic.id ? 'var(--accent-cyan)' : '#94a3b8',
-                        fontSize: '0.9rem', cursor: 'pointer', transition: 'all 0.2s',
-                        display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2px'
-                      }}
-                    >
-                      <div style={{ 
-                        minWidth: '6px', height: '6px', borderRadius: '50%', 
-                        background: activeTopic?.id === topic.id ? 'var(--accent-cyan)' : 'transparent' 
-                      }} />
-                      {topic.name}
-                    </button>
+              {/* Khối Mục tiêu */}
+              <div style={{ 
+                background: 'rgba(6, 182, 212, 0.05)', border: '1px solid rgba(6, 182, 212, 0.2)', 
+                borderRadius: '20px', padding: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' 
+              }}>
+                <h3 style={{ margin: '0 0 12px 0', display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent-cyan)', fontSize: '1.1rem', fontWeight: 800 }}>
+                  <Target size={20} /> MỤC TIÊU THÍ NGHIỆM
+                </h3>
+                <p style={{ margin: 0, color: '#e2e8f0', fontSize: '1rem', lineHeight: '1.6' }}>{selectedLab.purpose}</p>
+              </div>
+
+              {/* Khối Nguyên lý */}
+              <div style={{ 
+                background: 'rgba(15, 23, 42, 0.5)', border: '1px solid rgba(255,255,255,0.08)', 
+                borderRadius: '24px', padding: '32px', backdropFilter: 'blur(20px)' 
+              }}>
+                <h3 style={{ margin: '0 0 24px 0', color: '#fff', fontSize: '1.3rem', fontWeight: 800 }}>
+                  Cơ sở khoa học
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#cbd5e1', fontSize: '1.05rem', lineHeight: '1.8' }}>
+                  {selectedLab.principles.map((p, idx) => (
+                    <p key={idx} style={{ margin: 0 }}>{p}</p>
                   ))}
                 </div>
-              )}
+              </div>
+
             </div>
-          ))}
-        </div>
-      </aside>
 
-      {/* 2. Main Content Area */}
-      <main style={{ flex: 1, height: '100%', overflowY: 'auto', padding: '40px 60px', position: 'relative' }}>
-        
-        {/* Breadcrumbs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#64748b', fontSize: '0.85rem', marginBottom: '24px' }}>
-          <span>Chương trình</span> <ChevronRight size={12} />
-          <span>Lý thuyết trọng tâm</span> <ChevronRight size={12} />
-          <span style={{ color: 'var(--accent-cyan)' }}>{activeTopic.name}</span>
+            {/* Cột phải: Các bước tiến hành */}
+            <div style={{ 
+              background: 'rgba(15, 23, 42, 0.4)', border: '1px solid rgba(255,255,255,0.05)', 
+              borderRadius: '24px', padding: '24px' 
+            }}>
+              <h3 style={{ margin: '0 0 20px 0', color: '#fff', fontSize: '1.1rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FileText size={18} color="var(--accent-cyan)" /> Các bước lý thuyết
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {selectedLab.steps.map((step, idx) => (
+                  <div key={idx} style={{ 
+                    display: 'flex', gap: '12px', background: 'rgba(255,255,255,0.02)', 
+                    padding: '12px 16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.02)' 
+                  }}>
+                    <div style={{ color: 'var(--accent-cyan)', fontWeight: 800 }}>{idx + 1}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.5' }}>{step.replace(/^Bước \d+:\s*/, '')}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ 
+      padding: '40px', 
+      height: '100%', 
+      overflowY: 'auto', 
+      background: '#020617',
+      fontFamily: "'Inter', sans-serif" 
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
+        <div>
+          <h1 className="text-glow" style={{ margin: '0 0 8px 0', color: '#fff', fontSize: '2rem', fontWeight: 900 }}>
+            Thư Viện Lý Thuyết Thực Hành
+          </h1>
+          <p style={{ color: '#64748b', margin: 0 }}>
+            Tìm hiểu cơ sở khoa học chuyên sâu của 21 thí nghiệm ảo trong chương trình.
+          </p>
         </div>
 
-        <div style={{ maxWidth: '850px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 800, margin: 0, color: '#fff' }}>{activeTopic.name}</h1>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button className="btn-primary" style={{ padding: '8px 16px' }} onClick={() => navigate('/virtual-lab')}>
-                <Beaker size={18} /> Lab 3D
-              </button>
-              <button style={{ padding: '8px', background: 'rgba(255,255,255,0.05)', border: 'none', borderRadius: '8px', color: '#fff', cursor: 'pointer' }}>
-                <Bookmark size={18} />
-              </button>
+        {/* Thanh tìm kiếm */}
+        <div style={{ 
+          position: 'relative', 
+          display: 'flex', 
+          alignItems: 'center', 
+          background: 'rgba(255,255,255,0.05)', 
+          borderRadius: '12px', 
+          padding: '10px 16px',
+          width: '300px',
+          border: '1px solid rgba(255,255,255,0.05)'
+        }}>
+          <Search size={18} color="#64748b" />
+          <input 
+            placeholder="Tìm lý thuyết thí nghiệm..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ 
+              background: 'none', border: 'none', color: '#fff', 
+              fontSize: '0.9rem', marginLeft: '10px', outline: 'none', width: '100%' 
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Danh sách Thí nghiệm theo Nhóm */}
+      {categories.map((cat, idx) => {
+        const labsInCat = filteredLabs.filter(l => l.category === cat);
+        if (labsInCat.length === 0) return null;
+
+        return (
+          <div key={idx} style={{ marginBottom: '40px' }}>
+            <h2 style={{ 
+              fontSize: '1.2rem', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', 
+              color: 'var(--accent-cyan)', borderLeft: '4px solid var(--accent-cyan)', paddingLeft: '12px',
+              fontWeight: 800
+            }}>
+              {getIcon(cat)} {cat}
+            </h2>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+              {labsInCat.map((lab) => (
+                <div 
+                  key={lab.id}
+                  onClick={() => handleSelectLab(lab)}
+                  style={{ 
+                    padding: '24px', cursor: 'pointer', transition: 'all 0.3s ease', 
+                    borderRadius: '20px', background: 'rgba(15, 23, 42, 0.6)',
+                    border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)',
+                    display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '160px'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-5px)';
+                    e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(6, 182, 212, 0.1)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <span style={{ fontSize: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '6px', color: '#94a3b8' }}>
+                        {lab.grade}
+                      </span>
+                      <BookOpen size={16} color="#64748b" />
+                    </div>
+                    <h3 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#fff', fontWeight: 700 }}>
+                      {lab.name}
+                    </h3>
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    Xem chi tiết <ArrowRight size={14} />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* Theory Sections */}
-          <article style={{ lineHeight: '1.8', fontSize: '1.1rem', color: '#cbd5e1' }}>
-            {activeTopic.theory.map((section, idx) => (
-              <div key={idx} style={{ marginBottom: '48px' }}>
-                <h3 style={{ color: '#fff', fontSize: '1.5rem', marginBottom: '20px', fontWeight: 700 }}>
-                  {section.title}
-                </h3>
-                <p style={{ marginBottom: '24px' }}>{section.content}</p>
-                
-                {idx === 0 && (
-                  <div style={{ 
-                    padding: '24px', background: 'rgba(0, 240, 255, 0.03)', 
-                    borderLeft: '4px solid var(--accent-cyan)', borderRadius: '0 12px 12px 0',
-                    marginBottom: '32px' 
-                  }}>
-                    <h4 style={{ color: 'var(--accent-cyan)', margin: '0 0 12px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1rem' }}>
-                      <Info size={18} /> CÓ THỂ BẠN CHƯA BIẾT?
-                    </h4>
-                    <p style={{ margin: 0, fontSize: '0.95rem', fontStyle: 'italic', color: '#94a3b8' }}>
-                      Cấu trúc khảm động giúp tế bào thích nghi cực nhanh với sự thay đổi của môi trường. 
-                      Đây là chìa khóa để sự sống duy trì được tính ổn định (Homeostasis).
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </article>
-
-        </div>
-      </main>
-
+        );
+      })}
     </div>
   );
 };

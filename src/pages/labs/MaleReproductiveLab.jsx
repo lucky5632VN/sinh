@@ -42,7 +42,7 @@ const MaleReproductiveLab = () => {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
           <button
-            onClick={() => navigate('/virtual-lab')}
+            onClick={() => navigate(-1)}
             style={{
               padding: '8px', background: 'rgba(30, 41, 59, 0.5)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px',
               color: '#94a3b8', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'all 0.2s'

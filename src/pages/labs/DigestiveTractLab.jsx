@@ -43,7 +43,7 @@ const DigestiveTractLab = () => {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
           <button
-            onClick={() => navigate('/virtual-lab')}
+            onClick={() => navigate(-1)}
             style={{
               padding: '8px', background: '#111827', border: '1px solid #1f2937', borderRadius: '12px',
               color: '#94a3b8', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'all 0.2s'

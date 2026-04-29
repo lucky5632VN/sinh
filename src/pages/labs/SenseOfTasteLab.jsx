@@ -52,7 +52,7 @@ const SenseOfTasteLab = () => {
         zIndex: 10
       }}>
         <button 
-          onClick={() => navigate('/virtual-lab')}
+          onClick={() => navigate(-1)}
           style={{ 
             backgroundColor: 'rgba(30, 41, 59, 0.5)', border: 'none', color: '#94a3b8',
             width: '40px', height: '40px', borderRadius: '10px', cursor: 'pointer',
